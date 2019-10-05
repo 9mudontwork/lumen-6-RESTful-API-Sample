@@ -20,7 +20,7 @@ class Authenticate
      * @param  \Illuminate\Contracts\Auth\Factory  $auth
      * @return void
      */
-    public function __construct(Auth $auth)
+    public function __construct( Auth $auth )
     {
         $this->auth = $auth;
     }
@@ -33,12 +33,15 @@ class Authenticate
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle( $request, Closure $next, $guard = null )
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        // เช็คถถ้า api key ถูก กับยืนยัน userid ที่ตรวจสอบแล้ว มากับ request
+        // ถ้าไม่ได้รับการตรวจสอบจะ return Unauth
+        if ( $this->auth->guard( $guard )->guest() )
+        {
+            return response()->json( ['error' => 'Unauthorized'], 401 );
         }
 
-        return $next($request);
+        return $next( $request );
     }
 }
