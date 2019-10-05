@@ -5,11 +5,11 @@ use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements Authenticatable
+class Users extends Model implements Authenticatable
 {
     use AuthenticableTrait;
 
-    protected $table = 'user';
+    protected $table = 'users';
 
     // fillable ให้แสดงออกมาใน api ได้
     protected $fillable = [

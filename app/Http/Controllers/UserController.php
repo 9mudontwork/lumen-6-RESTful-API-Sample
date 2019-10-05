@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -26,7 +27,7 @@ class UsersController extends Controller
         $user = Users::where( 'email', $request->input( 'email' ) )->first();
         if ( Hash::check( $request->input( 'password' ), $user->password ) )
         {
-            $apikey = base64_encode( str_random( 40 ) );
+            $apikey = base64_encode( Str::random( 40 ) );
             Users::where( 'email', $request->input( 'email' ) )->update( ['api_key' => "$apikey"] );
 
             return response()->json( ['status' => 'success', 'api_key' => $apikey] );
