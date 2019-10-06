@@ -18,7 +18,7 @@ class TodoController extends Controller
     public function index()
     {
         // Auth::user เป็น class รับรองความถูกต้องของ user ถูกเรียกใช้งานจาก middleware/authenticate.php ต้องไปเปิด facades ด้วยถึงจะใช้งานได้
-        // ถ้า user ถูกรับรองแล้ว select ข้อมูลทั้งหมดใน table todo / todo() อ้างอิงการเลือก table todo จาก model file app/Todo.php
+        // ถ้า user ถูกรับรองแล้ว เรียกใช้งาน method todo() จาก user model app/Users.php เพื่อดึงข้อมูลทั้งหมดจาก table todo
         $todo = Auth::user()->todo()->get();
 
         // คืนค่า array ออกเป็น json

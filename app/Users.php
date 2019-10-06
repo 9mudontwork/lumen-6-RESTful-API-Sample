@@ -28,6 +28,8 @@ class Users extends Model implements Authenticatable
 
     public function todo()
     {
+        // hasMany จาก doc https://laravel.com/docs/6.x/eloquent-relationships#one-to-many
+        // ดึง ข้อมูล todo อ้างอิง suer id จาก auth ที่กำลัง login ใช้งานอยู่
         return $this->hasMany( 'App\Todo', 'user_id' );
     }
 }
