@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 |
  */
 
+//  การจัดการ routing ดูได้จาก doc https://lumen.laravel.com/docs/6.x/routing
+
 $router->get( '/', function () use ( $router )
 {
     return $router->app->version();

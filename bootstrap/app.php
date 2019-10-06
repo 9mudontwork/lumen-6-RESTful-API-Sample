@@ -22,6 +22,7 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
+// เปิดใช้ method Facades เพื่อใช้งาน Auth:user() ตามที่ doc บอก https://lumen.laravel.com/docs/6.x/authentication
 
 $app->withEloquent();
 
@@ -61,6 +62,7 @@ $app->singleton(
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
+// ทุกๆ route จะต้องผ่าน auth เลยต้องเปิดใช้งาน middleware จาก doc https://lumen.laravel.com/docs/6.x/authentication
 $app->routeMiddleware( [
     'auth' => App\Http\Middleware\Authenticate::class,
 ] );
@@ -80,6 +82,7 @@ $app->routeMiddleware( [
 |
  */
 
+//  เปิดใช้งานเพราะว่าต้องการใช้ authen tication ดูจาก doc https://lumen.laravel.com/docs/6.x/authentication
 $app->register( App\Providers\AppServiceProvider::class );
 $app->register( App\Providers\AuthServiceProvider::class );
 // $app->register(App\Providers\EventServiceProvider::class);
